@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--disableHostCheck=true"]
 
 FROM builder as dev-envs
 
@@ -28,4 +28,4 @@ EOF
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--disableHostCheck=true"]
